@@ -2,3 +2,4 @@ build
 migrations
 types
 node_modules
+.env
