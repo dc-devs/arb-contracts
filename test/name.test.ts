@@ -3,7 +3,7 @@ const NameContract = artifacts.require('Name');
 contract('Name', (accounts) => {
 	const [ownerAccount, accountOne, acccountTwo] = accounts;
 
-	it('should return name', async () => {
+	it.only('should return name', async () => {
 		const nameInstance = await NameContract.deployed();
 		const name = await nameInstance.getName();
 

@@ -1,7 +1,15 @@
+const { INITIAL_TOKENS } = require('../constants/constants');
 const Name = artifacts.require('Name');
+const HenFace = artifacts.require('HenFace');
+const StaloneBone = artifacts.require('StaloneBone');
 
-module.exports = function(deployer) {
-	deployer.deploy(Name);
+module.exports = async function (deployer) {
+	const initialTokenAmount = INITIAL_TOKENS;
+	// const [ownerAccountAddress] = await web3.eth.getAccounts();
+
+	await deployer.deploy(Name);
+	await deployer.deploy(HenFace, initialTokenAmount);
+	await deployer.deploy(StaloneBone, initialTokenAmount);
 } as Truffle.Migration;
 
 // because of https://stackoverflow.com/questions/40900791/cannot-redeclare-block-scoped-variable-in-unrelated-files
