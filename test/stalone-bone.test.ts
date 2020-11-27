@@ -1,27 +1,27 @@
 const { default: to } = require('await-to-js');
 const { INITIAL_TOKENS } = require('../constants/constants');
-const HenFace = artifacts.require('HenFace');
+const StaloneBone = artifacts.require('StaloneBone');
 
-contract('HenFace', async (accounts) => {
+contract('StaloneBone', async (accounts) => {
 	const [ownerAccount, accountOne] = accounts;
 
 	describe('when the contract is deployed', () => {
 		it('should return the name of the token', async () => {
-			const contract = await HenFace.new(INITIAL_TOKENS);
+			const contract = await StaloneBone.new(INITIAL_TOKENS);
 			const name = await contract.name();
 
-			expect(name).to.equal('HenFace');
+			expect(name).to.equal('StaloneBone');
 		});
 
 		it('should return the symbol of the token', async () => {
-			const contract = await HenFace.new(INITIAL_TOKENS);
+			const contract = await StaloneBone.new(INITIAL_TOKENS);
 			const symbol = await contract.symbol();
 
-			expect(symbol).to.equal('HFC');
+			expect(symbol).to.equal('STBN');
 		});
 
 		it('should return the number of decimals of the token', async () => {
-			const contract = await HenFace.new(INITIAL_TOKENS);
+			const contract = await StaloneBone.new(INITIAL_TOKENS);
 			const decimalsBn = await contract.decimals();
 			const decimalsString = decimalsBn.toString();
 
@@ -29,7 +29,7 @@ contract('HenFace', async (accounts) => {
 		});
 
 		it('should return the total supply of the token', async () => {
-			const contract = await HenFace.new(INITIAL_TOKENS);
+			const contract = await StaloneBone.new(INITIAL_TOKENS);
 			const totalSupplyBn = await contract.totalSupply();
 			const totalSupplyString = totalSupplyBn.toString();
 			const expectedTotalSupplyString = INITIAL_TOKENS.toString();
@@ -38,7 +38,7 @@ contract('HenFace', async (accounts) => {
 		});
 
 		it('should put initial token supply in the owner account', async () => {
-			const contract = await HenFace.new(INITIAL_TOKENS);
+			const contract = await StaloneBone.new(INITIAL_TOKENS);
 			const ownerBalanceBn = await contract.balanceOf(ownerAccount);
 			const ownerBalanceString = ownerBalanceBn.toString();
 			const readableInitialSupply = INITIAL_TOKENS.toString();
@@ -47,7 +47,7 @@ contract('HenFace', async (accounts) => {
 		});
 
 		it('should be able to be sent from acccount to another', async () => {
-			const contract = await HenFace.new(INITIAL_TOKENS);
+			const contract = await StaloneBone.new(INITIAL_TOKENS);
 			const sendAmount = web3.utils.toWei('1');
 			const sendAmountBn = web3.utils.toBN(sendAmount);
 
@@ -68,7 +68,7 @@ contract('HenFace', async (accounts) => {
 
 		it('should not be aloud to send more tokens than are available in total', async () => {
 			const sendAmount = web3.utils.toWei('1000001');
-			const contract = await HenFace.new(INITIAL_TOKENS);
+			const contract = await StaloneBone.new(INITIAL_TOKENS);
 
 			const [error, transaction] = await to(
 				contract.transfer(accountOne, sendAmount)
